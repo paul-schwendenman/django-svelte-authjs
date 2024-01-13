@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "django-svelte-authjs"
+version = "0.1.0"
+description = ""
+authors = ["Paul Schwendenman <schwendenman.paul@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Django = "^5.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
