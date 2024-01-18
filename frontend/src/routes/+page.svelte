@@ -1,6 +1,9 @@
 <script>
 	import { signIn, signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
+
+	let username = '';
+	let password = '';
 </script>
 
 <h1>SvelteKit Auth Example</h1>
@@ -17,5 +20,16 @@
 	{:else}
 		<span class="notSignedInText">You are not signed in</span>
 		<button on:click={() => signIn('github')}>Sign In with GitHub</button>
+		<form>
+			<label>
+				Username
+				<input name="username" type="text" bind:value={username} />
+			</label>
+			<label>
+				Password
+				<input name="password" type="password" bind:value={password} />
+			</label>
+			<button on:click={() => signIn('credentials', { username, password })}>Log in</button>
+		</form>
 	{/if}
 </p>
