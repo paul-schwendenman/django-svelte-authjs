@@ -20,7 +20,8 @@
 		<button on:click={() => signOut()} class="button">Sign out</button>
 	{:else}
 		<span class="notSignedInText">You are not signed in</span>
-		<!-- <button on:click={() => signIn('github')}>Sign In with GitHub</button> -->
+		<button on:click={() => signIn('github')}>Sign In with GitHub</button>
+		<hr />
 		<form>
 			<label>
 				Username
@@ -32,5 +33,8 @@
 			</label>
 			<button on:click={() => signIn('credentials', { username, password })}>Log in</button>
 		</form>
+		<hr />
+		<button on:click={() => signIn(undefined, {callbackUrl: "/profile"})}>Sign In and go to profile</button>
+
 	{/if}
 </p>
