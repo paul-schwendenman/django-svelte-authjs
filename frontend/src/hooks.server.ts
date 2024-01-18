@@ -19,7 +19,7 @@ const getCurrentEpochTime = () => {
 
 const SIGN_IN_HANDLERS = {
 	credentials: async (user, account, profile, email, credentials) => {
-		console.log({ user, account, profile, email, credentials });
+		// console.log({ user, account, profile, email, credentials });
 		return true;
 	},
 	github: async (user, account, profile, email, credentials) => {
