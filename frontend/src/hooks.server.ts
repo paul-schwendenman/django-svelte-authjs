@@ -1,4 +1,5 @@
 import { SvelteKitAuth } from '@auth/sveltekit';
+import type { SvelteKitAuthConfig } from '@auth/sveltekit';
 import GitHub from '@auth/sveltekit/providers/github';
 import CredentialsProvider from '@auth/sveltekit/providers/credentials';
 import axios from 'axios';
@@ -30,10 +31,10 @@ const SIGN_IN_HANDLERS = {
 
 const SIGN_IN_PROVIDERS = Object.keys(SIGN_IN_HANDLERS);
 
-export const handle = SvelteKitAuth({
+const authOptions: SvelteKitAuthConfig = {
 	secret: NEXTAUTH_SECRET,
 	session: {
-		strategy: 'jwt',
+		strategy: "jwt",
 		maxAge: BACKEND_REFRESH_TOKEN_LIFETIME
 	},
 	providers: [
@@ -104,4 +105,6 @@ export const handle = SvelteKitAuth({
 			return token;
 		}
 	}
-});
+};
+
+export const handle = SvelteKitAuth(authOptions);
