@@ -127,7 +127,11 @@ const authOptions: SvelteKitAuthConfig = {
 		debug(code, metadata) {
 		  log.debug(code, metadata)
 		}
-	  }
+	  },
+	theme: {
+		logo: "/favicon.png",
+		brandColor: "oklch(0.748 0.26 342.55)"
+	}
 };
 
 export const handle = SvelteKitAuth(authOptions);
