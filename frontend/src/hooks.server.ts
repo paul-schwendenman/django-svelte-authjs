@@ -24,9 +24,22 @@ const SIGN_IN_HANDLERS = {
 		return true;
 	},
 	github: async (user, account, profile, email, credentials) => {
-		// console.log({user, account, profile, email, credentials})
-		return true;
-	}
+		console.log({account})
+		try {
+		  const response = await axios({
+			method: "post",
+			url: NEXTAUTH_BACKEND_URL + "auth/github/",
+			data: {
+			  access_token: account["access_token"]
+			},
+		  });
+		  account["meta"] = response.data;
+		  return true;
+		} catch (error) {
+		  console.error(error);
+		  return false;
+		}
+	  }
 };
 
 const SIGN_IN_PROVIDERS = Object.keys(SIGN_IN_HANDLERS);
