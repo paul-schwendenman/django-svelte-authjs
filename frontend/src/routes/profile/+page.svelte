@@ -24,9 +24,9 @@
 
 <div>
 	<div>
-		<p>PK: {session.user.pk}</p>
-		<p>Username: {session.user.username}</p>
-		<p>Email: {session.user.email || 'Not provided'}</p>
+		<p>PK: {session?.user?.pk}</p>
+		<p>Username: {session?.user?.username}</p>
+		<p>Email: {session?.user?.email || 'Not provided'}</p>
 		<pre>
         {response}
       </pre>
