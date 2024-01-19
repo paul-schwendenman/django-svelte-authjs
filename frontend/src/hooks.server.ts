@@ -53,6 +53,7 @@ export const handle = SvelteKitAuth({
 						data: credentials
 					});
 					const data = response.data;
+
 					if (data) return data;
 				} catch (error) {
 					console.error(error);

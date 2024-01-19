@@ -36,4 +36,13 @@
 		<button on:click={() => getUserDetails(false)}> User details (without token) </button>
 		<button on:click={() => signOut({ callbackUrl: '/' })}> Sign out </button>
 	</div>
+    {#if $page.data.session}
+        <p>Session: {JSON.stringify($page.data.session)}</p>
+        <p>Session expiry: {$page.data.session?.expires}</p>
+    {:else}
+      <h1>Access Denied</h1>
+      <p>
+        <a href="/auth/signin"> You must be signed in to view this page </a>
+      </p>
+    {/if}
 </div>
