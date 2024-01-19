@@ -34,7 +34,8 @@
 			<button on:click={() => signIn('credentials', { username, password })}>Log in</button>
 		</form>
 		<hr />
-		<button on:click={() => signIn(undefined, {callbackUrl: "/profile"})}>Sign In and go to profile</button>
-
+		<button on:click={() => signIn(undefined, { callbackUrl: '/profile' })}
+			>Sign In and go to profile</button
+		>
 	{/if}
 </p>

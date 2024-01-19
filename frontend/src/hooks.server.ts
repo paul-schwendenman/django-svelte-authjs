@@ -34,7 +34,7 @@ const SIGN_IN_PROVIDERS = Object.keys(SIGN_IN_HANDLERS);
 const authOptions: SvelteKitAuthConfig = {
 	secret: NEXTAUTH_SECRET,
 	session: {
-		strategy: "jwt",
+		strategy: 'jwt',
 		maxAge: BACKEND_REFRESH_TOKEN_LIFETIME
 	},
 	providers: [
@@ -54,6 +54,7 @@ const authOptions: SvelteKitAuthConfig = {
 						data: credentials
 					});
 					const data = response.data;
+					console.log({ data });
 
 					if (data) return data;
 				} catch (error) {
