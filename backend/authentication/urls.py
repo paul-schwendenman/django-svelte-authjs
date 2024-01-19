@@ -4,6 +4,7 @@ from dj_rest_auth.registration.views import RegisterView
 from dj_rest_auth.views import LoginView, LogoutView, UserDetailsView
 from django.urls import path
 from rest_framework_simplejwt.views import TokenBlacklistView, TokenVerifyView
+from authentication.views import GithubLogin
 
 urlpatterns = [
     path("register/", RegisterView.as_view(), name="rest_register"),
@@ -13,4 +14,5 @@ urlpatterns = [
     path("token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path("token/refresh/", get_refresh_view().as_view(), name="token_refresh"),
     path('token/blacklist/', TokenBlacklistView.as_view(), name='token_blacklist'),
+    path("github/", GithubLogin.as_view(), name="github_login"),
 ]
