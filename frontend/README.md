@@ -47,6 +47,9 @@ I followed a couple pages and guides to get this project up and running
 - https://authjs.dev/reference/sveltekit
 - https://kit.svelte.dev/docs/modules#$env-static-public
 - https://authjs.dev/getting-started/typescript#module-augmentation
+- https://itecnote.com/tecnote/django-allauth-linking-multiple-social-accounts-to-a-single-user/
+- https://next-auth.js.org/configuration/pages
+- https://next-auth.js.org/configuration/options#theme
 
 ## Notes
 

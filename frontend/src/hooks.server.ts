@@ -24,7 +24,6 @@ const SIGN_IN_HANDLERS = {
 		return true;
 	},
 	github: async (user, account, profile, email, credentials) => {
-		console.log({ account });
 		try {
 			const response = await axios({
 				method: 'post',
@@ -87,8 +86,6 @@ const authOptions: SvelteKitAuthConfig = {
 			return SIGN_IN_HANDLERS[account.provider](user, account, profile, email, credentials);
 		},
 		async jwt({ user, token, account }) {
-			console.log('jwt');
-			// console.log({user, token, account});
 			if (user && account) {
 				let backendResponse = account.provider === 'credentials' ? user : account.meta;
 
@@ -112,17 +109,25 @@ const authOptions: SvelteKitAuthConfig = {
 				token['access_token'] = response.data.access;
 				token['refresh_token'] = response.data.refresh;
 				token['ref'] = getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME;
-			} else {
-				console.log(`still valid ${getCurrentEpochTime()} < ${token['ref']}`);
 			}
 			return token;
 		},
 		async session({ token }) {
-			console.log('session');
 			// console.log({token});
 			return token;
 		}
-	}
+	},
+	logger: {
+		error(error) {
+		  log.error(error)
+		},
+		warn(code) {
+		  log.warn(code)
+		},
+		debug(code, metadata) {
+		  log.debug(code, metadata)
+		}
+	  }
 };
 
 export const handle = SvelteKitAuth(authOptions);
