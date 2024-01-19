@@ -47,3 +47,11 @@ I followed a couple pages and guides to get this project up and running
 - https://www.freecodecamp.org/news/set-up-github-oauth-on-django-for-user-authentication/
 - https://authjs.dev/reference/sveltekit
 -
+
+## Notes
+
+AUTH_SECRET is a random string used by the library to encrypt tokens and email verification hashes:
+
+```
+openssl rand -base64 32
+```
