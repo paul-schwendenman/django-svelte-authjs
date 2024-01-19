@@ -5,10 +5,12 @@
 <div>
 	{#if $page.data.session}
 		<p>Session:</p>
+		<p>Session expiry: {new Date($page.data.session?.exp * 1000).toLocaleString()}</p>
+		<p>Session issued: {new Date($page.data.session?.iat * 1000).toLocaleString()}</p>
+		<p>Session reference: {new Date($page.data.session?.ref * 1000).toLocaleString()}</p>
 		<pre>
 {JSON.stringify($page.data.session, null, 4)}
         </pre>
-		<p>Session expiry: {$page.data.session?.expires}</p>
 	{:else}
 		<h1>Access Denied</h1>
 		<p>
