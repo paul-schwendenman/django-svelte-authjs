@@ -50,6 +50,8 @@ I followed a couple pages and guides to get this project up and running
 - https://itecnote.com/tecnote/django-allauth-linking-multiple-social-accounts-to-a-single-user/
 - https://next-auth.js.org/configuration/pages
 - https://next-auth.js.org/configuration/options#theme
+- https://authjs.dev/getting-started/providers/credentials-tutorial
+- https://medium.com/@uriser/authentication-in-sveltekit-with-auth-js-7ff505d584c4
 
 ## Notes
 
