@@ -119,18 +119,18 @@ const authOptions: SvelteKitAuthConfig = {
 	},
 	logger: {
 		error(error) {
-		  log.error(error)
+			console.error(error);
 		},
 		warn(code) {
-		  log.warn(code)
+			console.warn(code);
 		},
 		debug(code, metadata) {
-		  log.debug(code, metadata)
+			console.debug(code, metadata);
 		}
-	  },
+	},
 	theme: {
-		logo: "/favicon.png",
-		brandColor: "oklch(0.748 0.26 342.55)"
+		logo: '/favicon.png',
+		brandColor: 'oklch(0.748 0.26 342.55)'
 	}
 };
 
