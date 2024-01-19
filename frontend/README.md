@@ -36,3 +36,14 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+
+## Sources
+
+I followed a couple pages and guides to get this project up and running
+
+- https://testdriven.io/blog/django-rest-authjs/
+- https://docs.allauth.org/en/latest/installation/quickstart.html
+- https://www.freecodecamp.org/news/set-up-github-oauth-on-django-for-user-authentication/
+- https://authjs.dev/reference/sveltekit
+-
