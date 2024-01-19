@@ -45,7 +45,8 @@ I followed a couple pages and guides to get this project up and running
 - https://docs.allauth.org/en/latest/installation/quickstart.html
 - https://www.freecodecamp.org/news/set-up-github-oauth-on-django-for-user-authentication/
 - https://authjs.dev/reference/sveltekit
--
+- https://kit.svelte.dev/docs/modules#$env-static-public
+- https://authjs.dev/getting-started/typescript#module-augmentation
 
 ## Notes
 

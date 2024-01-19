@@ -74,6 +74,7 @@ const authOptions: SvelteKitAuthConfig = {
 			return SIGN_IN_HANDLERS[account.provider](user, account, profile, email, credentials);
 		},
 		async jwt({ user, token, account }) {
+			console.log('jwt');
 			// console.log({user, token, account});
 			if (user && account) {
 				let backendResponse = account.provider === 'credentials' ? user : account.meta;
@@ -90,7 +91,7 @@ const authOptions: SvelteKitAuthConfig = {
 			if (getCurrentEpochTime() > token['ref']) {
 				const response = await axios({
 					method: 'post',
-					url: process.env.NEXTAUTH_BACKEND_URL + 'auth/token/refresh/',
+					url: NEXTAUTH_BACKEND_URL + 'auth/token/refresh/',
 					data: {
 						refresh: token['refresh_token']
 					}
@@ -98,10 +99,13 @@ const authOptions: SvelteKitAuthConfig = {
 				token['access_token'] = response.data.access;
 				token['refresh_token'] = response.data.refresh;
 				token['ref'] = getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME;
+			} else {
+				console.log(`still valid ${getCurrentEpochTime()} < ${token['ref']}`);
 			}
 			return token;
 		},
 		async session({ token }) {
+			console.log('session');
 			// console.log({token});
 			return token;
 		}
