@@ -2,19 +2,22 @@
 	import { page } from '$app/stores';
     import { env } from '$env/dynamic/public';
 
-    import axios from 'axios';
-
     async function linkGithub() {
         const access_token = $page.data.session.access_token;
+        const url = env.PUBLIC_AUTHJS_BACKEND_URL + 'auth/github/connect/';
+        const headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`
+        });
 
 		try {
-			const response = await axios({
-				method: 'post',
-				url: env.PUBLIC_AUTHJS_BACKEND_URL + 'auth/github/connect/',
-				data: {
-					access_token
-				}
+			const response = await fetch(url, {
+				method: 'POST',
+                headers
 			});
+            if (!response.ok) {
+                throw response
+            }
 		} catch (error) {
 			console.error(error);
 		}

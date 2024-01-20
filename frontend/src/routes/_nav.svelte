@@ -26,6 +26,7 @@
 			<li class="navItem"><a href="/profile">Profile</a></li>
 			<li class="navItem"><a href="/protected">Protected</a></li>
 			<li class="navItem"><a href="/session">Session</a></li>
+			<li class="navItem"><a href="/link">Link</a></li>
 		</ul>
 	</nav>
 </header>

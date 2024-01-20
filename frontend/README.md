@@ -52,6 +52,8 @@ I followed a couple pages and guides to get this project up and running
 - https://next-auth.js.org/configuration/options#theme
 - https://authjs.dev/getting-started/providers/credentials-tutorial
 - https://medium.com/@uriser/authentication-in-sveltekit-with-auth-js-7ff505d584c4
+- https://stackoverflow.com/questions/52246203/how-to-connect-accounts-with-django-rest-auth-all-auth
+- https://gist.github.com/dgilge/dbe9260208aadee535cef7c412a1162e#file-07_views-py
 
 ## Notes
 
