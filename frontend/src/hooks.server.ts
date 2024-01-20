@@ -25,14 +25,18 @@ const SIGN_IN_HANDLERS = {
 	},
 	github: async (user, account, profile, email, credentials) => {
 		try {
-			const response = await axios({
-				method: 'post',
-				url: NEXTAUTH_BACKEND_URL + 'auth/github/',
-				data: {
-					access_token: account['access_token']
-				}
+			const headers = new Headers({
+				'Content-Type': 'application/json'
 			});
-			account['meta'] = response.data;
+			const response = await fetch(NEXTAUTH_BACKEND_URL + 'auth/github/', {
+				method: 'POST',
+				headers,
+				body: JSON.stringify({
+					access_token: account['access_token']
+				})
+			});
+
+			account['meta'] = await response.json();
 			return true;
 		} catch (error) {
 			console.error(error);
