@@ -2,7 +2,6 @@ import { SvelteKitAuth } from '@auth/sveltekit';
 import type { SvelteKitAuthConfig } from '@auth/sveltekit';
 import GitHub from '@auth/sveltekit/providers/github';
 import CredentialsProvider from '@auth/sveltekit/providers/credentials';
-import axios from 'axios';
 import {
 	GITHUB_ID,
 	GITHUB_SECRET,
