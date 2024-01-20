@@ -64,12 +64,15 @@ const authOptions: SvelteKitAuthConfig = {
 			// `user` variable to the signIn() and jwt() callback
 			async authorize(credentials, req) {
 				try {
-					const response = await axios({
-						url: NEXTAUTH_BACKEND_URL + 'auth/login/',
-						method: 'post',
-						data: credentials
+					const headers = new Headers({
+						'Content-Type': 'application/json'
 					});
-					const data = response.data;
+					const response = await fetch(NEXTAUTH_BACKEND_URL + 'auth/login/', {
+						method: 'POST',
+						body: JSON.stringify(credentials),
+						headers
+					});
+					const data = await response.json();
 					console.log({ data });
 
 					if (data) return data;
@@ -103,15 +106,17 @@ const authOptions: SvelteKitAuthConfig = {
 
 			// Refresh the backend token if necessary
 			if (getCurrentEpochTime() > token['ref']) {
-				const response = await axios({
-					method: 'post',
-					url: NEXTAUTH_BACKEND_URL + 'auth/token/refresh/',
-					data: {
-						refresh: token['refresh_token']
-					}
+				const headers = new Headers({
+					'Content-Type': 'application/json'
 				});
-				token['access_token'] = response.data.access;
-				token['refresh_token'] = response.data.refresh;
+				const response = await fetch(NEXTAUTH_BACKEND_URL + 'auth/token/refresh/', {
+					method: 'POST',
+					body: JSON.stringify({ refresh: token['refresh_token'] }),
+					headers
+				});
+				const data = await response.json();
+				token['access_token'] = data.access;
+				token['refresh_token'] = data.refresh;
 				token['ref'] = getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME;
 			}
 			return token;
