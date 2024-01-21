@@ -52,6 +52,8 @@ I followed a couple pages and guides to get this project up and running
 - https://next-auth.js.org/configuration/options#theme
 - https://authjs.dev/getting-started/providers/credentials-tutorial
 - https://medium.com/@uriser/authentication-in-sveltekit-with-auth-js-7ff505d584c4
+- https://dev.to/mabaranowski/nextjs-authentication-jwt-refresh-token-rotation-with-nextauthjs-5696
+- https://authjs.dev/guides/basics/refresh-token-rotation?frameworks=core
 
 ## Notes
 
