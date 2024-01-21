@@ -8,7 +8,7 @@
 		<p>Session expiry: {new Date($page.data.session?.exp * 1000).toLocaleString()}</p>
 		<p>Session issued: {new Date($page.data.session?.iat * 1000).toLocaleString()}</p>
 		<p>Session reference: {new Date($page.data.session?.ref * 1000).toLocaleString()}</p>
-		<pre>
+		<pre style="overflow-y: auto;">
 {JSON.stringify($page.data.session, null, 4)}
         </pre>
 	{:else}
