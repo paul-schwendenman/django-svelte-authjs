@@ -104,22 +104,35 @@ const authOptions: SvelteKitAuthConfig = {
 				return token;
 			}
 
-			// Refresh the backend token if necessary
-			if (getCurrentEpochTime() > token['ref']) {
-				const headers = new Headers({
-					'Content-Type': 'application/json'
-				});
-				const response = await fetch(NEXTAUTH_BACKEND_URL + 'auth/token/refresh/', {
-					method: 'POST',
-					body: JSON.stringify({ refresh: token['refresh_token'] }),
-					headers
-				});
-				const data = await response.json();
-				token['access_token'] = data.access;
-				token['refresh_token'] = data.refresh;
-				token['ref'] = getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME;
+			try {
+				// Refresh the backend token if necessary
+				if (getCurrentEpochTime() > token['ref']) {
+					console.log("Renewing");
+					const headers = new Headers({
+						'Content-Type': 'application/json'
+					});
+					const response = await fetch(NEXTAUTH_BACKEND_URL + 'auth/token/refresh/', {
+						method: 'POST',
+						body: JSON.stringify({ refresh: token['refresh_token'] }),
+						headers
+					});
+
+					const data = await response.json();
+
+					if (!response.ok) {
+						throw data.detail
+					}
+
+					token['access_token'] = data.access;
+					token['refresh_token'] = data.refresh;
+					token['ref'] = getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME;
+				}
+				return token;
+			} catch (error) {
+				console.error("Failed to refresh token", error);
+
+				return {...token, error: "RefreshTokenError" as const }
 			}
-			return token;
 		},
 		async session({ token }) {
 			// console.log({token});

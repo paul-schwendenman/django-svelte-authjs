@@ -41,6 +41,7 @@ declare module "@auth/sveltekit" {
 	iat: number;
 	exp: number;
 	jti: string;
+	error?: "RefreshAccessTokenError";
   }
 }
 
