@@ -8,6 +8,7 @@ import {
 	NEXTAUTH_SECRET,
 	NEXTAUTH_BACKEND_URL
 } from '$env/static/private';
+import { dev } from '$app/environment';
 
 // These two values should be a bit less than actual token lifetimes
 const BACKEND_ACCESS_TOKEN_LIFETIME = 45 * 60; // 45 minutes
@@ -136,6 +137,7 @@ const authOptions: SvelteKitAuthConfig = {
 			console.debug(code, metadata);
 		}
 	},
+	debug: dev,
 	theme: {
 		logo: '/favicon.png',
 		brandColor: 'oklch(0.748 0.26 342.55)'
