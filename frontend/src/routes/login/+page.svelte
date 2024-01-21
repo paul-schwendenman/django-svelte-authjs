@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { signIn } from '@auth/sveltekit/client';
+
     // import { getCsrfToken } from '@auth/sveltekit';
   export let data;
 
-  const { csrfToken } = data;
+  const { csrfToken, providers } = data;
 
   console.log({csrfToken})
 </script>
@@ -19,3 +21,11 @@
     </label>
     <button type="submit">Sign in</button>
 </form>
+
+{#each Object.values(providers) as provider (provider.id)}
+<div>
+  <button on:click={() => signIn(provider.id)}>
+    Sign in with {provider.name}
+  </button>
+</div>
+{/each}
