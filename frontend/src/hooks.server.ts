@@ -72,8 +72,14 @@ const authOptions: SvelteKitAuthConfig = {
 						body: JSON.stringify(credentials),
 						headers
 					});
+
 					const data = await response.json();
-					console.log({ data });
+					if (!response.ok) {
+						console.warn({data});
+						return null;
+					} else {
+						console.log({ data });
+					}
 
 					if (data) return data;
 				} catch (error) {
