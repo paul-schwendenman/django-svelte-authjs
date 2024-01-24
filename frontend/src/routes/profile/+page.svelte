@@ -8,7 +8,11 @@
 
 	const getUserDetails = async (useToken: boolean) => {
 		try {
-			const headers = new Headers(useToken && session?.access_token ? { Authorization: `Bearer ${session?.access_token}`} : {});
+			const headers = new Headers(
+				useToken && session?.access_token
+					? { Authorization: `Bearer ${session?.access_token}` }
+					: {}
+			);
 
 			const resp = await fetch(env.PUBLIC_AUTHJS_BACKEND_URL + 'auth/user/', {
 				method: 'GET',

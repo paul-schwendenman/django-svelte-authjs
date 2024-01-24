@@ -75,7 +75,7 @@ const authOptions: SvelteKitAuthConfig = {
 
 					const data = await response.json();
 					if (!response.ok) {
-						console.warn({data});
+						console.warn({ data });
 						return null;
 					} else {
 						console.log({ data });
@@ -113,7 +113,7 @@ const authOptions: SvelteKitAuthConfig = {
 			try {
 				// Refresh the backend token if necessary
 				if (getCurrentEpochTime() > token['ref']) {
-					console.log("Renewing");
+					console.log('Renewing');
 					const headers = new Headers({
 						'Content-Type': 'application/json'
 					});
@@ -126,7 +126,7 @@ const authOptions: SvelteKitAuthConfig = {
 					const data = await response.json();
 
 					if (!response.ok) {
-						throw data.detail
+						throw data.detail;
 					}
 
 					token['access_token'] = data.access;
@@ -135,9 +135,9 @@ const authOptions: SvelteKitAuthConfig = {
 				}
 				return token;
 			} catch (error) {
-				console.error("Failed to refresh token", error);
+				console.error('Failed to refresh token', error);
 
-				return {...token, error: "RefreshTokenError" as const }
+				return { ...token, error: 'RefreshTokenError' as const };
 			}
 		},
 		async session({ token }) {
