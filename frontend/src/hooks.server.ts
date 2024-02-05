@@ -1,10 +1,13 @@
 import { SvelteKitAuth } from '@auth/sveltekit';
 import type { SvelteKitAuthConfig } from '@auth/sveltekit';
 import GitHub from '@auth/sveltekit/providers/github';
+import Google from '@auth/sveltekit/providers/google';
 import CredentialsProvider from '@auth/sveltekit/providers/credentials';
 import {
 	GITHUB_ID,
 	GITHUB_SECRET,
+	GOOGLE_CLIENT_ID,
+	GOOGLE_CLIENT_SECRET,
 	NEXTAUTH_SECRET,
 	NEXTAUTH_BACKEND_URL
 } from '$env/static/private';
@@ -42,6 +45,28 @@ const SIGN_IN_HANDLERS = {
 			console.error(error);
 			return false;
 		}
+	},
+	google: async (user, account, profile, email, credentials) => {
+		try {
+			const headers = new Headers({
+				'Content-Type': 'application/json'
+			});
+			const response = await fetch(NEXTAUTH_BACKEND_URL + 'auth/google/', {
+				method: 'POST',
+				headers,
+				body: JSON.stringify({
+					id_token: account['id_token'],
+					access_token: account['access_token']
+				})
+			});
+
+			account['meta'] = await response.json();
+			return true;
+		} catch (error) {
+			console.error(error);
+			return false;
+		}
+
 	}
 };
 
@@ -88,7 +113,15 @@ const authOptions: SvelteKitAuthConfig = {
 				return null;
 			}
 		}),
-		GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET })
+		GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET }),
+		Google({ clientId: GOOGLE_CLIENT_ID, clientSecret: GOOGLE_CLIENT_SECRET,
+		      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      } })
 	],
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
