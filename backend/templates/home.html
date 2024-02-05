@@ -1,0 +1,11 @@
+{% load socialaccount %}
+
+<h1>Django Allauth Tutorial</h1>
+{% if user.is_authenticated %}
+<p>Welcome {{ user.username }} !!!</p>
+<a href="/accounts/logout/">Sign Out</a>
+{% else %}
+<a href="{% provider_login_url 'google' %}">Google Sign Up</a>
+<a href="{% provider_login_url 'github' %}">Github Sign Up</a>
+<a href="accounts/login/">Sign In</a>
+{% endif %}

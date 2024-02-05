@@ -56,6 +56,7 @@ I followed a couple pages and guides to get this project up and running
 - https://authjs.dev/guides/basics/refresh-token-rotation?frameworks=core
 - https://asvrada.github.io/blog/django-graphql-jwt/
 - https://next-auth.js.org/configuration/options#callbacks
+- https://learndjango.com/tutorials/django-allauth-tutorial
 
 ## Notes
 
