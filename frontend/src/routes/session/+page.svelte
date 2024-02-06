@@ -21,6 +21,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Django Auth.js - Session</title>
+</svelte:head>
+
 <div>
 	{#if $page.data.session}
 		<p>Session:</p>

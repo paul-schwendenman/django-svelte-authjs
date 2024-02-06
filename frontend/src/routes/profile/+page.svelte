@@ -25,6 +25,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Django Auth.js - Profile</title>
+</svelte:head>
+
 <div>
 	<div>
 		<p>PK: {session?.user?.pk}</p>

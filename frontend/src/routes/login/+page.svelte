@@ -9,6 +9,10 @@
 	console.log({ csrfToken });
 </script>
 
+<svelte:head>
+	<title>Django Auth.js - Login</title>
+</svelte:head>
+
 {#each Object.values(providers) as provider (provider.id)}
 	{#if provider.type == 'oauth'}
 		<div>

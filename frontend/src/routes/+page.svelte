@@ -6,6 +6,10 @@
 	let password = '';
 </script>
 
+<svelte:head>
+	<title>Django Auth.js - Home</title>
+</svelte:head>
+
 <h1>SvelteKit Auth Example</h1>
 <p>
 	{#if $page.data.session}

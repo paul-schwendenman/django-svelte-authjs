@@ -10,4 +10,8 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Django Auth.js - Profile</title>
+</svelte:head>
+
 <b>Secrets</b>
