@@ -18,7 +18,7 @@
 			header,
 			payload
 		};
-	}
+	};
 </script>
 
 <svelte:head>
@@ -35,12 +35,20 @@
 {JSON.stringify($page.data.session, null, 4)}
 		</pre>
 		Access token:
-		<p>Access token expiry: {new Date(decodeJWT($page.data.session.access_token)?.payload?.exp * 1000).toLocaleString()}</p>
+		<p>
+			Access token expiry: {new Date(
+				decodeJWT($page.data.session.access_token)?.payload?.exp * 1000
+			).toLocaleString()}
+		</p>
 		<pre style="overflow-y: auto;">
 {JSON.stringify(decodeJWT($page.data.session.access_token), null, 4)}
 		</pre>
 		Refresh token:
-		<p>Refresh token expiry: {new Date(decodeJWT($page.data.session.refresh_token)?.payload?.exp * 1000).toLocaleString()}</p>
+		<p>
+			Refresh token expiry: {new Date(
+				decodeJWT($page.data.session.refresh_token)?.payload?.exp * 1000
+			).toLocaleString()}
+		</p>
 		<pre style="overflow-y: auto;">
 {JSON.stringify(decodeJWT($page.data.session.refresh_token), null, 4)}
 		</pre>

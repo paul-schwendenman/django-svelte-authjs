@@ -66,7 +66,6 @@ const SIGN_IN_HANDLERS = {
 			console.error(error);
 			return false;
 		}
-
 	}
 };
 
@@ -114,14 +113,17 @@ const authOptions: SvelteKitAuthConfig = {
 			}
 		}),
 		GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET }),
-		Google({ clientId: GOOGLE_CLIENT_ID, clientSecret: GOOGLE_CLIENT_SECRET,
-		      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code"
-        }
-      } })
+		Google({
+			clientId: GOOGLE_CLIENT_ID,
+			clientSecret: GOOGLE_CLIENT_SECRET,
+			authorization: {
+				params: {
+					prompt: 'consent',
+					access_type: 'offline',
+					response_type: 'code'
+				}
+			}
+		})
 	],
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
