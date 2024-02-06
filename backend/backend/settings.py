@@ -182,5 +182,11 @@ SOCIALACCOUNT_PROVIDERS = {
         # interpreted as verified.
         "VERIFIED_EMAIL": True
     },
+    "google": {
+        # For each provider, you can choose whether or not the
+        # email address(es) retrieved from the provider are to be
+        # interpreted as verified.
+        "VERIFIED_EMAIL": True
+    },
 }
 
