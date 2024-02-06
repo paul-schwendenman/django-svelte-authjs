@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@auth/core@0.25.1':
+    hash: zmay2ux3agpdpsfn3lazleobiu
+    path: patches/@auth__core@0.25.1.patch
+
 devDependencies:
   '@auth/core':
     specifier: ^0.21.0
@@ -92,7 +97,7 @@ packages:
       preact-render-to-string: 5.2.3(preact@10.11.3)
     dev: true
 
-  /@auth/core@0.25.1:
+  /@auth/core@0.25.1(patch_hash=zmay2ux3agpdpsfn3lazleobiu):
     resolution: {integrity: sha512-Xt/0oV0ItS38BUeqc98LVYspoXSUifWS48BeEzWXkkdQgLcXEFnF008+CDLyZvnyv/zF4vahwJHeR/J5SK9RaA==}
     peerDependencies:
       nodemailer: ^6.8.0
@@ -108,6 +113,7 @@ packages:
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
     dev: true
+    patched: true
 
   /@auth/sveltekit@0.11.1(@sveltejs/kit@2.3.2)(svelte@4.2.8):
     resolution: {integrity: sha512-ZRgsSCWkBiswbbNdV0FCOunrtVoSkqc+XKX3aNSZQvxeWQ0YgN26BYH5G99BM2DK+FKUAmsKiNdp3PdouGrIcA==}
@@ -115,7 +121,7 @@ packages:
       '@sveltejs/kit': ^1.0.0 || ^2.0.0
       svelte: ^3.54.0 || ^4.0.0 || ^5
     dependencies:
-      '@auth/core': 0.25.1
+      '@auth/core': 0.25.1(patch_hash=zmay2ux3agpdpsfn3lazleobiu)
       '@sveltejs/kit': 2.3.2(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.8)(vite@5.0.11)
       set-cookie-parser: 2.6.0
       svelte: 4.2.8

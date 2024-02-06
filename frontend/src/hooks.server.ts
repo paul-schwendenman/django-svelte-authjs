@@ -8,7 +8,7 @@ import {
 	GITHUB_SECRET,
 	GOOGLE_CLIENT_ID,
 	GOOGLE_CLIENT_SECRET,
-	NEXTAUTH_SECRET,
+	AUTH_SECRET,
 	NEXTAUTH_BACKEND_URL
 } from '$env/static/private';
 import { dev } from '$app/environment';
@@ -72,7 +72,7 @@ const SIGN_IN_HANDLERS = {
 const SIGN_IN_PROVIDERS = Object.keys(SIGN_IN_HANDLERS);
 
 const authOptions: SvelteKitAuthConfig = {
-	secret: NEXTAUTH_SECRET,
+	secret: AUTH_SECRET,
 	session: {
 		strategy: 'jwt',
 		maxAge: BACKEND_REFRESH_TOKEN_LIFETIME
@@ -112,8 +112,8 @@ const authOptions: SvelteKitAuthConfig = {
 				return null;
 			}
 		}),
-		GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET }),
-		Google({
+		(GITHUB_ID && GITHUB_SECRET) ? GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET }) : null,
+		(GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET) ? Google({
 			clientId: GOOGLE_CLIENT_ID,
 			clientSecret: GOOGLE_CLIENT_SECRET,
 			authorization: {
@@ -123,8 +123,8 @@ const authOptions: SvelteKitAuthConfig = {
 					response_type: 'code'
 				}
 			}
-		})
-	],
+		}) : null
+	].filter(item => item !== null) as Provider[],
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
 			if (!SIGN_IN_PROVIDERS.includes(account?.provider)) {
