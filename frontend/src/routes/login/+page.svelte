@@ -14,14 +14,14 @@
 </svelte:head>
 
 {#each Object.values(providers) as provider (provider.id)}
-	{#if provider.type == 'oauth'}
-		<div>
+	{#if provider.type == 'oauth' || provider.type == 'oidc'}
+		<div class="container">
 			<button on:click={() => signIn(provider.id)}>
 				Sign in with {provider.name}
 			</button>
 		</div>
 	{:else if provider.type == 'credentials'}
-		<form method="post" action={provider.callbackUrl}>
+		<form method="post" action={provider.callbackUrl} class="container">
 			<input name="csrfToken" type="hidden" value={csrfToken} />
 			<label>
 				Username
@@ -35,7 +35,13 @@
 		</form>
 	{:else}
 		<pre>
-    {JSON.stringify(provider, null, 4)}
-  </pre>
+{JSON.stringify(provider, null, 4)}
+		</pre>
 	{/if}
 {/each}
+
+<style>
+	.container {
+		padding: 1rem 0;
+	}
+</style>
