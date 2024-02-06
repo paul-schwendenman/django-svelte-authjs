@@ -57,6 +57,8 @@ I followed a couple pages and guides to get this project up and running
 - https://asvrada.github.io/blog/django-graphql-jwt/
 - https://next-auth.js.org/configuration/options#callbacks
 - https://learndjango.com/tutorials/django-allauth-tutorial
+- https://github.com/nextauthjs/next-auth/blob/main/packages/core/src/lib/pages/signin.tsx
+
 
 ## Notes
 
