@@ -4,12 +4,10 @@ import GitHub from '@auth/sveltekit/providers/github';
 import Google from '@auth/sveltekit/providers/google';
 import CredentialsProvider from '@auth/sveltekit/providers/credentials';
 import {
-	GITHUB_ID,
-	GITHUB_SECRET,
-	GOOGLE_CLIENT_ID,
-	GOOGLE_CLIENT_SECRET,
+	AUTH_GITHUB_ID,
+	AUTH_GOOGLE_ID,
 	AUTH_SECRET,
-	NEXTAUTH_BACKEND_URL
+	AUTH_BACKEND_URL
 } from '$env/static/private';
 import { dev } from '$app/environment';
 
@@ -31,7 +29,7 @@ const SIGN_IN_HANDLERS = {
 			const headers = new Headers({
 				'Content-Type': 'application/json'
 			});
-			const response = await fetch(NEXTAUTH_BACKEND_URL + 'auth/github/', {
+			const response = await fetch(AUTH_BACKEND_URL + 'auth/github/', {
 				method: 'POST',
 				headers,
 				body: JSON.stringify({
@@ -51,7 +49,7 @@ const SIGN_IN_HANDLERS = {
 			const headers = new Headers({
 				'Content-Type': 'application/json'
 			});
-			const response = await fetch(NEXTAUTH_BACKEND_URL + 'auth/google/', {
+			const response = await fetch(AUTH_BACKEND_URL + 'auth/google/', {
 				method: 'POST',
 				headers,
 				body: JSON.stringify({
@@ -91,7 +89,7 @@ const authOptions: SvelteKitAuthConfig = {
 					const headers = new Headers({
 						'Content-Type': 'application/json'
 					});
-					const response = await fetch(NEXTAUTH_BACKEND_URL + 'auth/login/', {
+					const response = await fetch(AUTH_BACKEND_URL + 'auth/login/', {
 						method: 'POST',
 						body: JSON.stringify(credentials),
 						headers
@@ -112,10 +110,8 @@ const authOptions: SvelteKitAuthConfig = {
 				return null;
 			}
 		}),
-		(GITHUB_ID && GITHUB_SECRET) ? GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET }) : null,
-		(GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET) ? Google({
-			clientId: GOOGLE_CLIENT_ID,
-			clientSecret: GOOGLE_CLIENT_SECRET,
+		(AUTH_GITHUB_ID ) ? GitHub : null,
+		(AUTH_GOOGLE_ID ) ? Google({
 			authorization: {
 				params: {
 					prompt: 'consent',
