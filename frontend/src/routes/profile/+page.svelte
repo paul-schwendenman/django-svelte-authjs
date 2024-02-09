@@ -14,7 +14,7 @@
 					: {}
 			);
 
-			const resp = await fetch(env.PUBLIC_AUTHJS_BACKEND_URL + 'auth/user/', {
+			const resp = await fetch(env.PUBLIC_AUTH_BACKEND_URL + 'auth/user/', {
 				method: 'GET',
 				headers
 			});
